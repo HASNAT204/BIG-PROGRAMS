@@ -1,0 +1,237 @@
+#include<iostream>
+#include<string>
+using namespace std;
+struct machine
+{
+	string name{};
+	double drinkcost{};	
+	int NoofDrinks{};
+
+
+};
+void cheak(int& num);
+
+int main()
+{
+	machine* ptr = new machine[4];
+	ptr[0].name = "COCA COLA";
+	ptr[1].name = "ROOT BEAR";
+	ptr[2].name = "GRAPE SODA ";
+	ptr[3].name = "CREAM SODA";
+
+	ptr[0].drinkcost = 75;
+	ptr[1].drinkcost = 75;
+	ptr[2].drinkcost = 80;
+	ptr[3].drinkcost = 80;
+
+	ptr[0].NoofDrinks = 20;
+	ptr[1].NoofDrinks = 20;
+	ptr[2].NoofDrinks = 20;
+	ptr[3].NoofDrinks = 20;
+
+	cout << "\t\t\t****WELCOME TO VENDING MACHINE****" << endl;
+	cout << endl;
+	int choice;
+
+	double money1{};
+	double money2{};
+	double money3{};
+	double money4{};
+	double totalmon{};
+
+	double earn1{};
+	double earn2{};
+	double earn3{};
+	double earn4{};
+
+
+
+	double change1{};
+	double change2{};
+	double change3{};
+	double change4{};
+	do
+	{
+		cout << "   DRINK NAME     " << "  COST  " << "  NUMBER IN MACHINE    " << endl;
+		cout << "   COCA COLA      " << "   75   " << "         20            " << endl;
+		cout << "   ROOT BEAR      " << "   75   " << "         20            " << endl;
+		cout << "   GRAPE SODA     " << "   80   " << "         20            " << endl;
+		cout << "   CREAM SODA     " << "   80   " << "         20            " << endl;
+
+		cout << "Press 1 to pick coca cola" << endl;
+		cout << "Press 2 to pick  root bear" << endl;
+		cout << "press 3 to pick grape soda" << endl;
+		cout << "press 4 to pick cream soda" << endl;
+		cout << "Press 5 to quit the program" << endl;
+
+		cin >> choice;
+		cheak(choice);
+		switch (choice)
+		{
+		case 1:
+			if (ptr[0].NoofDrinks < 1)
+			{
+				cout << "coca cola has sold out" << endl;
+			}
+			else
+			{
+				cout << "Please enter money" << endl;
+			label:
+				cin >> money1;
+				if (money1 > 1 && money1 <= 100)
+				{
+
+
+					if (money1 < ptr[0].drinkcost)
+					{
+						cout << " price of the drink is 75 again enter price  " << endl;
+						goto label;
+					}
+					change1 = money1 - ptr[0].drinkcost;
+					cout << "Your change:" << change1 << endl;
+					earn1 += ptr[0].drinkcost;
+					ptr[0].NoofDrinks -= 1;
+				}
+				else
+				{
+					cout << "please enter money less than or equal to 100" << endl;
+					goto label;
+				}
+			}
+
+			break;
+		case 2:
+			if (ptr[1].NoofDrinks < 1)
+			{
+				cout << "root bear cola has sold out" << endl;
+			}
+			else
+			{
+				cout << "Please enter money" << endl;
+			label1:
+				cin >> money2;
+				if (money2 > 1 && money2 <= 100)
+				{
+
+
+					if (money2 < ptr[1].drinkcost)
+					{
+						cout << " price of the drink is 75 again enter price  " << endl;
+						goto label1;
+					}
+					change2 = money2 - ptr[1].drinkcost;
+					cout << "Your change:" << change2 << endl;
+					earn2 += ptr[1].drinkcost;
+					ptr[1].NoofDrinks -= 1;
+				}
+				else
+				{
+					cout << "please enter money less than or equal to 100" << endl;
+					goto label1;
+				}
+			}
+
+			break;
+		case 3:
+			if (ptr[2].NoofDrinks < 1)
+			{
+				cout << "grape soda has sold out" << endl;
+			}
+			else
+			{
+				cout << "Please enter money" << endl;
+			label2:
+				cin >> money3;
+				if (money3 > 1 && money3 <= 100)
+				{
+
+
+					if (money3 < ptr[1].drinkcost)
+					{
+						cout << " price of the drink is 80 again enter price  " << endl;
+						goto label2;
+					}
+					change3 = money3 - ptr[2].drinkcost;
+					cout << "Your change:" << change3 << endl;
+					earn3 += ptr[2].drinkcost;
+					ptr[2].NoofDrinks -= 1;
+				}
+				else
+				{
+					cout << "please enter money less than or equal to 100" << endl;
+					goto label2;
+				}
+			}
+
+			break;
+		case 4:
+			if (ptr[3].NoofDrinks < 1)
+			{
+				cout << "cream soda has sold out" << endl;
+			}
+			else
+			{
+				cout << "Please enter money" << endl;
+			label3:
+				cin >> money4;
+				if (money4 > 1 && money4 <= 100)
+				{
+
+
+					if (money3 < ptr[3].drinkcost)
+					{
+						cout << " price of the drink is 80 again enter price  " << endl;
+						goto label3;
+					}
+					change4 = money4 - ptr[3].drinkcost;
+					cout << "Your change:" << change4 << endl;
+					earn4 += ptr[3].drinkcost;
+					ptr[3].NoofDrinks -= 1;
+				}
+				else
+				{
+					cout << "please enter money less than or equal to 100" << endl;
+					goto label3;
+				}
+			}
+
+		case 5:
+			cout << "PROGRAM QUITTING OK BYE ALSO TRY NEXT TIME" << endl;
+			break;
+		default:
+			cout << "invalid input" << endl;
+		}
+
+	} while (choice != 5);
+
+	totalmon = earn1 + earn2 + earn3 + earn4;
+	cout << endl;
+	cout << "TOTAL amount of money machine has earned:" << totalmon << endl;
+	cout << endl;
+
+
+	system("pause");
+}
+void cheak(int& num)
+{
+i:
+	while (!cin.good())
+	{
+		cout << "        ******WRONG INPUT PLEASE TRY AGAIN*****" << endl;
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+		cout << "enter again choice" << endl;
+		cin >> num;
+		if (num == 1 || num == 2 || num == 3 || num == 4 || num == 5)
+		{
+			return;
+		}
+		else
+		{
+			goto i;
+		}
+	}
+
+
+
+}
